@@ -13,12 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const USERNAME = "devocamp";
+const PASSWORD = "devocamp";
+const dbName = "devocamp";
 const mongoConnect = () => __awaiter(void 0, void 0, void 0, function* () {
+    const DB_URI = `mongodb+srv://${USERNAME}:${PASSWORD}aMh7N9S8Uetm9biy@cluster0.mbqycb3.mongodb.net/${dbName}?retryWrites=true&w=majority`;
     try {
-        yield mongoose_1.default.connect(process.env.DB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        yield mongoose_1.default.connect(DB_URI);
         console.log("DB connected");
     }
     catch (error) {
