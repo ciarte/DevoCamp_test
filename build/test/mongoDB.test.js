@@ -12,17 +12,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+//import mongoConnect from "../config/mongoDB";
 const mongoose_1 = __importDefault(require("mongoose"));
 require("dotenv/config");
-const mongoConnect = () => __awaiter(void 0, void 0, void 0, function* () {
-    const DB_URI_LOCAL = process.env.DB_URI_LOCAL;
-    try {
-        yield mongoose_1.default.connect(DB_URI_LOCAL);
-        console.log("DB connected");
-    }
-    catch (error) {
-        console.error("Failed to connect to MongoDB");
-        console.error(error);
-    }
+describe("insert", () => {
+    let connection;
+    let db;
+    beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
+        //connection = await mongoConnect();
+        connection = yield mongoose_1.default.connect(process.env.DB_URI_LOCAL);
+        db = yield connection.db("testing");
+    }));
+    /*
+    afterAll(async () => {
+      await connection.close();
+    }); */
+    /* it("should insert a doc into collection", async () => {
+      const users = db.collection("testing");
+  
+      const mockUser = { _id: "some-user-id", name: "John" };
+      await users.insertOne(mockUser);
+  
+      const insertedUser = await users.findOne({ _id: "some-user-id" });
+      expect(insertedUser).toEqual(mockUser);
+    }); */
 });
-exports.default = mongoConnect;

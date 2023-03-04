@@ -1,13 +1,10 @@
 import mongoose from "mongoose";
-
-const USERNAME = "devocamp";
-const PASSWORD = "devocamp";
-const dbName = "devocamp";
+import "dotenv/config";
 
 const mongoConnect = async () => {
-  const DB_URI = `mongodb+srv://${USERNAME}:${PASSWORD}aMh7N9S8Uetm9biy@cluster0.mbqycb3.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+  const DB_URI_LOCAL = <string>process.env.DB_URI_LOCAL;
   try {
-    await mongoose.connect(DB_URI);
+    await mongoose.connect(DB_URI_LOCAL);
     console.log("DB connected");
   } catch (error) {
     console.error("Failed to connect to MongoDB");

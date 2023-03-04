@@ -6,7 +6,7 @@ exports.router = (0, express_1.Router)();
 exports.router.get("/postulaciones", (_req, res) => {
     res.send("test ruta postulaciones");
 });
-exports.router.post("/postulaciones", (req, res) => {
-    let bodyData = req.body;
+exports.router.post("/postulaciones", (_req, res) => {
+    //let bodyData = req.body;
     res.status(201).json({ status: "ok" });
 });
