@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import "dotenv/config";
 
-const mongoConnect = async () => {
+export const mongoConnect = async () => {
   const DB_URI_LOCAL = <string>process.env.DB_URI_LOCAL;
   try {
     await mongoose.connect(DB_URI_LOCAL);
@@ -11,4 +11,3 @@ const mongoConnect = async () => {
     console.error(error);
   }
 };
-export default mongoConnect;

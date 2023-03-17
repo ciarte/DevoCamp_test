@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.mongoConnect = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 require("dotenv/config");
 const mongoConnect = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -25,4 +26,4 @@ const mongoConnect = () => __awaiter(void 0, void 0, void 0, function* () {
         console.error(error);
     }
 });
-exports.default = mongoConnect;
+exports.mongoConnect = mongoConnect;

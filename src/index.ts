@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import mongoConnect from "./config/mongoDB";
+import { mongoConnect } from "./config/mongoDB";
 import "dotenv/config";
 import router from "./routes";
 
