@@ -4,6 +4,6 @@ export default {
   host: 'smtp.gmail.com',
   port: 465,
   secure: true,
-  user: 'tu-correo@gmail.com',
-  password: 'tu-contraseña',
+  user: <string>process.env.EMAIL,
+  password: <string>process.env.PASSWORD,
 };
