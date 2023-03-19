@@ -1,24 +1,28 @@
 import { Router, Request, Response } from "express";
-// import EmailController from '../controllers/Email';
-
+import EmailController from '../controllers/Email';
+import createEmailApplicants from '../utils/conts';
 
 export const router = Router();
 
-router.get("/postulaciones", (_req, res) => {
-  console.log(_req.body)
+router.get("/", (_req, res) => {
   res.send("test GET ruta postulaciones");
 });
 
-router.post("/postulaciones/post", (req: Request, res: Response) => {
-  let bodyData = req.body;
-  // const email = EmailController;
-  // email.send(req,res);
-  console.log(bodyData);
+router.post("/", (req: Request, res: Response) => {
+  const email = EmailController;
 
-  res.status(201).json({ status: "ok" });
-});
+  if (Object.keys(req.body).length < 2) {
+    res.status(400).send('Bad request');
+    return;
+  }
 
-router.delete("/postulaciones", (_req, res) => {
+  const emailRequest = req;
+
+  emailRequest.body = {
+    to: req.body.email,
+    subject: "Campamento Devocamp",
+    message: createEmailApplicants(req.body.name),
+  }
   
-  res.send("Nice");
+  email.send(emailRequest, res);
 });
