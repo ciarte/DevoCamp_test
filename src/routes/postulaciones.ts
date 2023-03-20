@@ -1,21 +1,28 @@
 
 import  express  from "express";
-
+import {Postulantes} from "../models/Postulantes";
 export const router = express.Router();
 
 //  Model
-const Postulaciones = require('../models/Postulantes');
+const Postulaciones= Postulantes 
 
 // GET all 
 router.get('/', async (_req , res) => {
+try{
   const postulacione = await Postulaciones.find();
   res.json(postulacione);
+}catch(error) {
+  res.status(500).json(error)
+  return;
+}
 });
 
+  
+
 // GET all 
-router.get('/:name', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try{
-    const postulacione = await Postulaciones.findByName(req.params.name);
+    const postulacione = await Postulaciones.findById(req.params.id);
     res.json(postulacione);
   }catch(error) {
     res.status(500).json(error)
@@ -39,11 +46,11 @@ router.post('/', async (req, res) => {
 });
 
 // UPDATE a new 
-router.put('/:name', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try{
     const { name,email,linkedin,porfolio,presentationLetter,cv } = req.body;
     const newPostulaciones = {name,email,linkedin,porfolio,presentationLetter,cv};
-    await Postulaciones.findByNameAndUpdate(req.params.name, newPostulaciones);
+    await Postulaciones.findByIdAndUpdate(req.params.id, newPostulaciones);
     res.json({status: 'Postulaciones Updated'});
   }catch(error) {
     res.status(500).json(error)
@@ -51,9 +58,9 @@ router.put('/:name', async (req, res) => {
   }
   
 });
-router.delete('/:name', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try{
-    await Postulaciones.findByNameAndRemove(req.params.name);
+    await Postulaciones.findByIdAndRemove(req.params.id);
     res.json({status: 'Postulaciones Deleted'});
   }catch(error) {
     res.status(500).json(error)
