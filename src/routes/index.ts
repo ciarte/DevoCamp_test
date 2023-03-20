@@ -3,6 +3,6 @@ import { router as routerPostulaciones } from "./postulaciones";
 
 const router = Router();
 
-router.get("/postulaciones", routerPostulaciones);
+router.use("/postulaciones", routerPostulaciones);
 
 export default router;
