@@ -1,0 +1,47 @@
+[33mcommit 5f6778020fc4b14f460b314c8de93e810615ba88[m[33m ([m[1;36mHEAD -> [m[1;32mfeat/modelo[m[33m)[m
+Author: Rotela Domingo Ramon <74286462+rotela5@users.noreply.github.com>
+Date:   Mon Mar 20 04:57:25 2023 -0300
+
+    rutasPostulantes
+
+[33mcommit d281746526c9b1987220ffa6ac7052919e3c42af[m
+Author: Rotela Domingo Ramon <74286462+rotela5@users.noreply.github.com>
+Date:   Fri Mar 17 05:48:47 2023 -0300
+
+    rutas
+
+[33mcommit 867831eac125a888eca98ab8b3bdbf1ea5f4fd0a[m
+Author: Rotela Domingo Ramon <74286462+rotela5@users.noreply.github.com>
+Date:   Mon Mar 13 05:35:43 2023 -0300
+
+    creacionRamas
+
+[33mcommit 6462a46d3a137d935958fd315554776137c150be[m[33m ([m[1;32mdevelop[m[33m)[m
+Author: brab0210 <bernardoarrechea@gmail.com>
+Date:   Sat Mar 4 08:34:23 2023 -0300
+
+    conexion con mongolocal
+
+[33mcommit be7378303298fb98b0851a071c08b7bef0b9f623[m
+Author: brab0210 <bernardoarrechea@gmail.com>
+Date:   Fri Mar 3 17:30:40 2023 -0300
+
+    fix ruta /routes
+
+[33mcommit 7f2ce19e2d97ee4a5d6db09c7834d71856e03ddf[m
+Author: brab0210 <bernardoarrechea@gmail.com>
+Date:   Thu Mar 2 20:28:09 2023 -0300
+
+    se quitan las options mongoConnect
+
+[33mcommit 03995f8e7927e6cb96d3bd0e48fbd5a409592b1e[m
+Author: brab0210 <bernardoarrechea@gmail.com>
+Date:   Thu Mar 2 00:35:02 2023 -0300
+
+    estructura de carpetas y config db
+
+[33mcommit 6bfa19118b0ec9e02209172f5ab6d1f0b75657db[m
+Author: brab0210 <bernardoarrechea@gmail.com>
+Date:   Wed Mar 1 19:32:22 2023 -0300
+
+    first commit
