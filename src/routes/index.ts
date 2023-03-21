@@ -9,6 +9,5 @@ import { router as routerEmpresas } from "./empresas";
 const router = Router();
 
 router.use("/postulaciones", routerPostulaciones);
-router.use("/empresas", routerEmpresas);
-
+router.use("/empresas",routerEmpresas);
 export default router;
