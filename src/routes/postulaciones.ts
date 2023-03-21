@@ -1,10 +1,12 @@
-import { Request, Response } from "express";
+import { Router, Request, Response } from "express";
+
 import EmailController from '../controllers/Email';
 import createEmailApplicants from '../utils/conts';
 
 import  express  from "express";
 import {Postulantes} from "../models/Postulantes";
 export const router = express.Router();
+
 
 //  Model
 const Postulaciones= Postulantes 
@@ -32,6 +34,8 @@ router.get('/:id', async (req, res) => {
     return;
   }
   });
+
+
 
 
 router.post("/", (req: Request, res: Response) => {
