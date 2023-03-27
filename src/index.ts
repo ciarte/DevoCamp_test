@@ -4,6 +4,7 @@ import { mongoConnect } from "./config/mongoDB";
 import "dotenv/config";
 import router from "./routes";
 
+
 const app = express();
 
 app.use(express.json());
@@ -19,3 +20,5 @@ app.listen(PORT, () => {
 });
 
 mongoConnect();
+
+export default app ;

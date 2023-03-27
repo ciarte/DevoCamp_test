@@ -42,4 +42,3 @@ describe("Prueba de conexión con MongoDB", () => {
   });
 });
 
-//how to center a div?

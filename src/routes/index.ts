@@ -1,7 +1,3 @@
-
-
-
-
 import { Router } from "express";
 import { router as routerPostulaciones } from "./postulaciones";
 import { router as routerEmpresas } from "./empresas";

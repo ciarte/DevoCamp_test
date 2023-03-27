@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 
 import EmailController from "../controllers/Email";
 import createEmailApplicants from "../utils/conts";
@@ -31,44 +31,35 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", (req: Request, res: Response) => {
-  const email = EmailController;
-
-  if (Object.keys(req.body).length < 2) {
-    res.status(400).send("Bad request");
-    return;
-  }
-
-  const emailRequest = req;
-
-  emailRequest.body = {
-    to: req.body.email,
-    subject: "Campamento Devocamp",
-    message: createEmailApplicants(req.body.name),
-  };
-
-  email.send(emailRequest, res);
-});
-
 // ADD a new
 router.post("/", async (req, res) => {
-  try {
-    const { name, email, linkedin, porfolio, presentationLetter, cv } =
-      req.body;
-    const postulacione = new Postulaciones({
-      name,
-      email,
-      linkedin,
-      porfolio,
-      presentationLetter,
-      cv,
-    });
-    await postulacione.save();
-    res.json({ status: "Postulaciones Saved" });
-  } catch (error) {
+  const { name, email, linkedin,
+    porfolio, presentationLetter, cv } = req.body;
+  const postulacione = new Postulaciones({
+    name,
+    email,
+    linkedin,
+    porfolio,
+    presentationLetter,
+    cv,
+  });
+
+  await postulacione.save().then(() => {
+    const email = EmailController;
+    const emailRequest = req;
+
+    emailRequest.body = {
+      to: req.body.email,
+      subject: "Campamento Devocamp",
+      message: createEmailApplicants(req.body.name),
+    };
+
+    email.send(emailRequest, res);
+  }).catch((error) => {
     res.status(500).json(error);
     return;
-  }
+  });
+
 });
 
 // UPDATE a new
@@ -91,6 +82,7 @@ router.put("/:id", async (req, res) => {
     return;
   }
 });
+
 router.delete("/:id", async (req, res) => {
   try {
     await Postulaciones.findByIdAndRemove(req.params.id);
