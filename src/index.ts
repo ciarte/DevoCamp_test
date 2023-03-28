@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import { mongoConnect } from "./config/mongoDB";
 import "dotenv/config";
 import router from "./routes";
 
@@ -12,10 +11,5 @@ app.use(cors());
 app.use("/", router);
 
 app.set("port", 3000 || process.env.PORT);
-let PORT = app.get("port");
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-
-mongoConnect();
+export default app;
