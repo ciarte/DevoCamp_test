@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node build/index.js",
-    "dev": "ts-node-dev src/index.ts",
+    "start": "node build/server.js",
+    "dev": "ts-node-dev src/server.ts",
     "tsc": "tsc",
     "build:prod": "rimraf ./build && tsc",
-    "start:prod": "npm run build:prod && node build/index.js",
+    "start:prod": "npm run build:prod && node build/server.js",
     "test": "jest --verbose --detectOpenHandles",
     "test:coverage": "jest --verbose --detectOpenHandles --coverage --coverageReporters=html"
   },
