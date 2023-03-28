@@ -14,10 +14,6 @@ describe("Test to save new postulaciones", () => {
         await mongoose.disconnect();
     });
 
-    // beforeEach(async () => {
-    //     await EmailSchema.deleteMany();
-    // });
-
     test("Save and safe", async () => {
         const postulaciones = {
             name: faker.name.firstName() + " " + faker.name.lastName(),
