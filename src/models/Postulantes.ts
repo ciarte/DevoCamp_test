@@ -31,7 +31,7 @@ const PostulanteSchema = new Schema({
         type: String,
         required: false,
         trim: true,
-        maxlength: 100
+        maxlength: 300
     },
     CV: {
         type: String,

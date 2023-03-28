@@ -31,17 +31,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// ADD a new
+// ADD a new and send an email
 router.post("/", async (req, res) => {
   const { name, email, linkedin,
-    porfolio, presentationLetter, cv } = req.body;
+    porfolio, presentationLetter, CV } = req.body;
   const postulacione = new Postulaciones({
     name,
     email,
     linkedin,
     porfolio,
     presentationLetter,
-    cv,
+    CV,
   });
 
   await postulacione.save().then(() => {
@@ -56,8 +56,9 @@ router.post("/", async (req, res) => {
 
     email.send(emailRequest, res);
   }).catch((error) => {
-    res.status(500).json(error);
-    return;
+    res.status(500).json({
+      error
+    });
   });
 
 });
@@ -65,7 +66,7 @@ router.post("/", async (req, res) => {
 // UPDATE a new
 router.put("/:id", async (req, res) => {
   try {
-    const { name, email, linkedin, porfolio, presentationLetter, cv } =
+    const { name, email, linkedin, porfolio, presentationLetter, CV } =
       req.body;
     const newPostulaciones = {
       name,
@@ -73,7 +74,7 @@ router.put("/:id", async (req, res) => {
       linkedin,
       porfolio,
       presentationLetter,
-      cv,
+      CV,
     };
     await Postulaciones.findByIdAndUpdate(req.params.id, newPostulaciones);
     res.json({ status: "Postulaciones Updated" });
