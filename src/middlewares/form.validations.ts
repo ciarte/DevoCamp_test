@@ -1,8 +1,6 @@
 import { check } from "express-validator";
 import { Postulantes } from "../models/Postulantes";
 
-console.log("form.validation");
-
 export const validations = [
   check("name")
     .notEmpty()
