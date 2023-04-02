@@ -1,4 +1,6 @@
-import { Router } from "express";
+import { Router, Response, Request } from "express";
+import { validations } from "../middlewares/form.validations";
+import { validationResult } from "express-validator";
 
 import EmailController from "../controllers/Email";
 import createEmailApplicants from "../utils/conts";
@@ -32,9 +34,14 @@ router.get("/:id", async (req, res) => {
 });
 
 // ADD a new and send an email
-router.post("/", async (req, res) => {
-  const { name, email, linkedin,
-    porfolio, presentationLetter, CV } = req.body;
+router.post("/", validations, async (req: Request, res: Response) => {
+  const validationErrors = validationResult(req);
+  const { name, email, linkedin, porfolio, presentationLetter, CV } = req.body;
+
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).json(validationErrors.mapped());
+  }
+
   const postulacione = new Postulaciones({
     name,
     email,
@@ -44,23 +51,31 @@ router.post("/", async (req, res) => {
     CV,
   });
 
-  await postulacione.save().then(() => {
-    const email = EmailController;
-    const emailRequest = req;
+  await postulacione
+    .save()
+    .then(() => {
+      const email = EmailController;
+      const emailRequest = req;
 
-    emailRequest.body = {
-      to: req.body.email,
-      subject: "Campamento Devocamp",
-      message: createEmailApplicants(req.body.name),
-    };
+      emailRequest.body = {
+        to: req.body.email,
+        subject: "Campamento Devocamp",
+        message: createEmailApplicants(req.body.name),
+      };
+      console.log("email->", email);
 
-    email.send(emailRequest, res);
-  }).catch((error) => {
-    res.status(500).json({
-      error
+      //email.send(emailRequest, res);
+      return res.status(201).json({
+        status: "Ok",
+        result: "Usuario creado y email enviado con éxito",
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        error,
+      });
     });
-  });
-
+  return false;
 });
 
 // UPDATE a new
