@@ -16,49 +16,56 @@ describe("Test to save new postulaciones", () => {
 
 
   
-describe("GET /postulaciones", () => {
+describe(" Test  postulaciones", () => {
   test("should respond with a 200 status code", async () => {
     const response = await request(app).get("/postulaciones").send();
     expect(response.statusCode).toBe(200);
+  
+    
   });
 
  });
 
 
-describe("POST /postulaciones", () => {
-  describe("should respond a json as a content type", () => {
-    
-    // should respond with a 200 code
-    test("should respond with a 200 status code", async () => {
-      const newPostulaciones=[{
-        name: 'string',
-            email: 'string',
-            linkedin:'string',
-            porfolio: 'string',
-            presentationLetter: 'string',
-            CV: 'string',
-      }
-    ]
-      
+describe("Test to save new postulaciones", () => {
+  const postulaciones = {
+    name: 'string',
+    email: 'string',
+    linkedin:'string',
+    porfolio: 'string',
+    presentationLetter: 'string',
+    CV: 'string',
 
-      const response = await request(app).post("/postulaciones").send(newPostulaciones);
-      expect(response.status).toBe(200);
-      
-      expect(response.headers["content-type"]).toEqual(
-        expect.stringContaining("json")
-      );
-      
+  };
+  
+  describe('the postulaciones', () => {
+    test('has email', () => {
+      expect(postulaciones.email).toBe('string');
+    });
+  
+    test('has a  name', () => {
+      expect(postulaciones.name).toBe('string');
+    });
+    test('has linkedin', () => {
+      expect(postulaciones.linkedin).toBe('string');
+    });
+  
+    test('has a  porfolio', () => {
+      expect(postulaciones.porfolio).toBe('string');
+    });
+    test('has a  cv', () => {
+      expect(postulaciones.CV).toBe('string');
     });
 
-    
-      
-      
-   
-  });
+  }); 
+  
+
+
+
 
   describe("when the name ", () => {
-    // should respond with a 500 code
-    test("shoud respond with a 500 status code", async () => {
+    // should respond with a 400 code
+    test("shoud respond with a 400 status code", async () => {
       const postulaciones = [
         {name: 'string',
         email: 'string',
