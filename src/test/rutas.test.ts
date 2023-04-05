@@ -81,3 +81,28 @@ describe("Test to save new postulaciones", () => {
   });
 });
 })
+describe("POST /postulaciones", () => {
+  describe("given postulaciones", () => {
+    const newPostulaciones={
+      name: 'string',
+          email: 'string',
+          linkedin:'string',
+          porfolio: 'string',
+          presentationLetter: 'string',
+          CV: 'string',
+    }
+   
+   
+    // should respond a json as a content type
+    test("should have a Content-Type: application/json header", async () => {
+      const response = await request(app).post("/postulaciones").send(newPostulaciones);
+      expect(response.headers["content-type"]).toEqual(
+        expect.stringContaining("json")
+      );
+    });
+    test("should respond with an postulaciones name", async () => {
+      const response = await request(app).post("/postulaciones").send(newPostulaciones);
+      expect(response.body.name).toBeDefined();
+    });
+  })
+})
