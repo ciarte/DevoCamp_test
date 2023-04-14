@@ -42,7 +42,15 @@ router.post(
   validations,
   async (req: Request, res: Response) => {
     const validationErrors = validationResult(req);
-    const { name, email, linkedin, porfolio, presentationLetter } = req.body;
+    const {
+      name,
+      email,
+      linkedin,
+      porfolio,
+      presentationLetter,
+      CV_file,
+      selectedButtons,
+    } = req.body;
     let CV: string | undefined = req.file?.filename;
 
     if (!validationErrors.isEmpty()) {
@@ -51,14 +59,48 @@ router.post(
       return res.status(400).json(validationErrors.mapped());
     }
 
-    const postulacione = new Postulaciones({
+    const postulacione = new Postulantes({
       name,
       email,
       linkedin,
       porfolio,
       presentationLetter,
-      CV,
+      CV_file,
+      listaSeccion: [selectedButtons],
     });
+
+    try {
+      const savePostulacione = await postulacione.save();
+      res.status(201).json(savePostulacione);
+    } catch (error) {
+      res.status(500).json(error);
+      return;
+    }
+
+    await postulacione
+      .save()
+      .then(() => {
+        const email = EmailController;
+        const emailRequest = req;
+
+        emailRequest.body = {
+          to: req.body.email,
+          subject: "Campamento Devocamp",
+          message: createEmailApplicants(req.body.name),
+        };
+        console.log("email->", email);
+
+        //email.send(emailRequest, res);
+        return res.status(201).json({
+          status: "Ok",
+          result: "Usuario creado y email enviado con éxito",
+        });
+      })
+      .catch((error) => {
+        res.status(500).json({
+          error,
+        });
+      });
 
     await postulacione
       .save()
