@@ -36,20 +36,30 @@ router.get("/:id", async (req, res) => {
 // ADD a new and send an email
 router.post("/", validations, async (req: Request, res: Response) => {
   const validationErrors = validationResult(req);
-  const { name, email, linkedin, porfolio, presentationLetter, CV } = req.body;
-
+  const { name, email, linkedin, porfolio, presentationLetter, CV_file,  selectedButtons } = req.body;
+   
   if (!validationErrors.isEmpty()) {
     return res.status(400).json(validationErrors.mapped());
   }
 
-  const postulacione = new Postulaciones({
+  const postulacione = new Postulantes({
     name,
     email,
     linkedin,
     porfolio,
     presentationLetter,
-    CV,
-  });
+    CV_file,
+    listaSeccion: [selectedButtons]
+});
+
+try {
+
+    const savePostulacione = await postulacione.save();
+res.status(201).json(savePostulacione);
+} catch (error) {
+    res.status(500).json(error);
+    return;
+  }
 
   await postulacione
     .save()
@@ -107,27 +117,4 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json(error);
     return;
   }
-});
-router.post('/postulaciones', async (req, res) => {
-    const { name, email, linkedin, porfolio, presentationLetter, CV_file,  selectedButtons } = req.body;
-    
-    const postulacione = new Postulantes({
-        name,
-        email,
-        linkedin,
-        porfolio,
-        presentationLetter,
-        CV_file,
-        listaSeccion: [selectedButtons]
-    });
-    
-   try {
-   
-        const savePostulacione = await postulacione.save();
-    res.status(201).json(savePostulacione);
-    } catch (error) {
-        res.status(500).json(error);
-        return;
-      }
-    
 });
