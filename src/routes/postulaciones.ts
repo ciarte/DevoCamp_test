@@ -48,14 +48,13 @@ router.post(
       linkedin,
       porfolio,
       presentationLetter,
-      CV_file,
       selectedButtons,
     } = req.body;
-    let CV: string | undefined = req.file?.filename;
+    let cv_file: string | undefined = req.file?.filename;
 
     if (!validationErrors.isEmpty()) {
       let dir = path.resolve(__dirname, "../../uploads");
-      if (existsSync(`${dir}/${CV}`)) unlinkSync(`${dir}/${CV}`);
+      if (existsSync(`${dir}/${cv_file}`)) unlinkSync(`${dir}/${cv_file}`);
       return res.status(400).json(validationErrors.mapped());
     }
 
@@ -65,7 +64,7 @@ router.post(
       linkedin,
       porfolio,
       presentationLetter,
-      CV_file,
+      cv_file,
       listaSeccion: [selectedButtons],
     });
 
@@ -88,9 +87,8 @@ router.post(
           subject: "Campamento Devocamp",
           message: createEmailApplicants(req.body.name),
         };
-        console.log("email->", email);
 
-        //email.send(emailRequest, res);
+        email.send(emailRequest, res);
         return res.status(201).json({
           status: "Ok",
           result: "Usuario creado y email enviado con éxito",
@@ -102,30 +100,11 @@ router.post(
         });
       });
 
-    await postulacione
-      .save()
-      .then(() => {
-        const email = EmailController;
-        const emailRequest = req;
-
-        emailRequest.body = {
-          to: req.body.email,
-          subject: "Campamento Devocamp",
-          message: createEmailApplicants(req.body.name),
-        };
-
-        email.send(emailRequest, res);
-
-        /* return res.status(201).json({
+    /*  return res.status(201).json({
           status: "Ok",
           result: "Usuario creado y email enviado con éxito",
         }); */
-      })
-      .catch((error) => {
-        res.status(500).json({
-          error,
-        });
-      });
+
     return false;
   }
 );
