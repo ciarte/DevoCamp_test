@@ -33,12 +33,20 @@ const PostulanteSchema = new Schema({
         trim: true,
         maxlength: 300
     },
-    CV: {
+    CV_file: {
         type: String,
         required: true,
         trim: true,
         maxlength: 100
-    }
+    },
+    listaSeccion: {
+        type: [String],
+        default:[],
+        trim: true,
+        maxlength: 100
+    },
+    
+
 }, {
     versionKey: false,
     timestamps: true,
