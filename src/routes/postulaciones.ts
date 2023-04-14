@@ -108,3 +108,26 @@ router.delete("/:id", async (req, res) => {
     return;
   }
 });
+router.post('/postulaciones', async (req, res) => {
+    const { name, email, linkedin, porfolio, presentationLetter, CV_file,  selectedButtons } = req.body;
+    
+    const postulacione = new Postulantes({
+        name,
+        email,
+        linkedin,
+        porfolio,
+        presentationLetter,
+        CV_file,
+        listaSeccion: [selectedButtons]
+    });
+    
+   try {
+   
+        const savePostulacione = await postulacione.save();
+    res.status(201).json(savePostulacione);
+    } catch (error) {
+        res.status(500).json(error);
+        return;
+      }
+    
+});
