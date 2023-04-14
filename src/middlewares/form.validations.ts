@@ -45,7 +45,7 @@ export const validations: ValidationChain[] = [
     .notEmpty()
     .withMessage("Es importante contar con tu repo o porfolio")
     .trim(),
-  body("CV").custom((_value, { req }) => {
+  body("cv_file").custom((_value, { req }) => {
     if (!req.file) throw new Error("Debes adjuntar tu curriculum vitae");
     let ext = path.extname(req.file?.filename);
     let extValidation = extAllow.includes(ext);
