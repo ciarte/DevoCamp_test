@@ -1,58 +1,59 @@
 import { model, Schema } from "mongoose";
 
-const PostulanteSchema = new Schema({
+const PostulanteSchema = new Schema(
+  {
     name: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 100
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 100,
     },
 
     email: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 100
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 100,
     },
-    
+
     linkedin: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 100
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 100,
     },
     porfolio: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 100
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 100,
     },
     presentationLetter: {
-        type: String,
-        required: false,
-        trim: true,
-        maxlength: 300
+      type: String,
+      required: false,
+      trim: true,
+      maxlength: 300,
     },
-    CV_file: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 100
+    cv_file: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 100,
     },
     listaSeccion: {
-        type: [String],
-        default:[],
-        trim: true,
-        maxlength: 100
+      type: [String],
+      default: [],
+      trim: true,
+      maxlength: 100,
     },
-    
-
-}, {
+  },
+  {
     versionKey: false,
     timestamps: true,
-    collection: 'Postulantes',
+    collection: "Postulantes",
     minimize: true,
-    strict: true 
-});
+    strict: true,
+  }
+);
 
-export const Postulantes = model('Postulantes', PostulanteSchema);
+export const Postulantes = model("Postulantes", PostulanteSchema);
