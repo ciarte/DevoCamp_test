@@ -8,7 +8,7 @@ const EmpresaSchema = new Schema({
         maxlength: 100
     },
 
-    Direccion: {
+    direccion: {
         type: String,
         required: true,
         trim: true,
