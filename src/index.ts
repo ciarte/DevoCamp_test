@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import router from "./routes";
 
+//import { Postulantes } from "./models/Postulantes";
 
 const app = express();
 
