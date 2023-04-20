@@ -3,6 +3,7 @@ import { mongoConnect } from "../config/mongoDB";
 import request from "supertest";
 import app  from "../index";
 import "dotenv/config";
+//import { Postulantes } from '../models/Postulantes';
 
 
 describe("Test to save new postulaciones", () => {
