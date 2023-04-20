@@ -4,54 +4,40 @@ import app  from "../index"
 const { faker } = require('@faker-js/faker');
 import "dotenv/config";
 import mongoose from "mongoose";
-import { Empresas } from '../models/Empresas';
 
 describe("Test to save new postulaciones", () => {
     beforeAll(async () => {
         await mongoConnect();
     });
-  
+
     afterAll(async () => {
         await mongoose.disconnect();
     });
-  
-  
-    
-  describe(" Test  empresas", () => {
-    test("should respond with a 200 status code", async () => {
-      const response = await request(app).post("/empresas").send();
-      expect(response.statusCode).toBe(200);
-    
-      
+
+    test("Save and safe", async () => {
+        const postulaciones = {
+            name: faker.name.firstName() + " " + faker.name.lastName(),
+            email: faker.internet.email(),
+            linkedin: faker.internet.url(),
+            porfolio: faker.internet.url(),
+            presentationLetter: faker.lorem.sentences(),
+            CV: faker.internet.url(),
+        }
+       
+        const response = await request(app).post("/postulaciones").send(postulaciones);
+        expect(response.status).toBe(200);
     });
-  
-   });
-  
-  
-  describe("Test to save new empresas", () => {
-    const empresas = {
-      name: 'string',
-      email: 'string',
-      direccion:'string',
-      
-  
-    };
-    
-    describe('the empresas', () => {
-      test('has email', () => {
-        expect(empresas.email).toBe('string');
-      });
-    
-      test('has a  name', () => {
-        expect(empresas.name).toBe('string');
-      });
-      test('has linkedin', () => {
-        expect(empresas.direccion).toBe('string');
-      });
-    
-      
-    }); 
-    
-  
-  });
-})  
+
+    test("Bad save and safe", async () => {
+        const postulaciones = {
+            name: faker.name.firstName() + " " + faker.name.lastName(),
+            email: faker.internet.email(),
+            linkedin: faker.internet.url(),
+            porfolio: faker.internet.url(),
+            presentationLetter: faker.lorem.sentences(),
+        }
+
+        const response = await request(app).post("/postulaciones").send(postulaciones);
+        expect(response.status).toBe(500);
+    });
+})

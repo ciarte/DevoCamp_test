@@ -1,13 +1,9 @@
 import { Router } from "express";
 
-//import { Router, Response, Request } from "express";
-//import { validations } from "../middlewares/form.validations";
-//import { validationResult } from "express-validator";
 
 import EmailController from "../controllers/Email";
 import createEmailApplicants from "../utils/conts";
 
-import { Empresas } from "../models/Empresas";
 
 
 export const router = Router();
@@ -25,7 +21,7 @@ router.post("/empresas",async (req, res) => {
     emailRequest.body = {
       to: req.body.email,
       subject: "correo enviado",
-      message: createEmailApplicants(req.body.name),
+      message: createEmailApplicants(req.body.Email),
     };
         
    email.send(emailRequest, res);
