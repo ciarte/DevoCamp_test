@@ -1,6 +1,6 @@
 import { Router, Response, Request } from "express";
 import { Empresas } from '../models/Empresas';
-import upload from '../middlewares/empresasMulter'; /* MANAGES THE FILE UPLOAD */
+import upload from '../middlewares/form.file.upload'; /* MANAGES THE FILE UPLOAD */
 import deleteUploadsContents from '../utils/deleteUploadsContents'; /* DELETES UPLOADING FILE IN UPLOADS FOLDER, NO THE FOLDER ITSELF NOR THE PREVIOUS FILES */
 import validateBody from '../middlewares/empresasValidator'; /* EXPRESS VALIDATOR FOR /EMPRESAS POST REQUEST */
 import { validationResult } from 'express-validator';
