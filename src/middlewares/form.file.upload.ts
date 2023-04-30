@@ -9,14 +9,14 @@ const storage: multer.StorageEngine = multer.diskStorage({
     _file: Express.Multer.File,
     callback: (error: Error | null, destination: string) => void
   ) => {
-    const uploadsDir = path.resolve(__dirname, "../uploads");
+    const uploadsDir = path.resolve(__dirname, "../../uploads");
 
     //if the "uploads" folder does not exist, a new one will be created
     if (!fs.existsSync(uploadsDir)) {
       fs.mkdirSync(uploadsDir);
     }
     
-    callback(null, path.resolve(__dirname, "../uploads"))
+    callback(null, path.resolve(__dirname, "../../uploads"))
   },
   filename: (
     _req: Request,
