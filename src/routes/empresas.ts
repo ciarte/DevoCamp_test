@@ -4,8 +4,8 @@ import upload from '../middlewares/form.file.upload'; /* MANAGES THE FILE UPLOAD
 import deleteUploadsContents from '../utils/deleteUploadsContents'; /* DELETES UPLOADING FILE IN UPLOADS FOLDER, NO THE FOLDER ITSELF NOR THE PREVIOUS FILES */
 import validateBody from '../middlewares/empresasValidator'; /* EXPRESS VALIDATOR FOR /EMPRESAS POST REQUEST */
 import { validationResult } from 'express-validator';
-import EmailController from "../controllers/Email";
-import createEmailApplicants from "../utils/conts";
+import EmailController from "../utils/Email";
+import createEmail from "../utils/conts";
 
 
 
@@ -54,8 +54,8 @@ router.post("/", upload.single("archivoAdjunto"), validateBody, async (req: Requ
     /* NODEMAILER SECTION */
     req.body = {
       to: correo,
-      subject: "correo enviado",
-      message: createEmailApplicants(correo),
+      subject: "Busqueda de aplicantes",
+      message: createEmail(correo, req),
     };
     await EmailController.send(req, res);
     /*  */
@@ -69,6 +69,4 @@ router.post("/", upload.single("archivoAdjunto"), validateBody, async (req: Requ
     return res.status(500).send(error.message);
   }
 });
-
-
 

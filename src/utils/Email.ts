@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Email from '../models/Email';
 import config from '../config/email';
-const nodemailer = require("nodemailer");
+import nodemailer from 'nodemailer';
 
 class EmailController {
     async send(req: Request, _res: Response) {
