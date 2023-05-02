@@ -1,13 +1,12 @@
-import path from "path";
 import { Router, Response, Request } from "express";
 import { validations } from "../middlewares/form.validations";
 import { validationResult } from "express-validator";
 import upload from "../middlewares/form.file.upload";
-import EmailController from "../controllers/Email";
-import createEmailApplicants from "../utils/conts";
-import { unlinkSync, existsSync } from "fs";
-
+import EmailController from "../utils/Email";
+import createEmail from "../utils/conts";
 import { Postulantes } from "../models/Postulantes";
+import deleteUploadsContents from '../utils/deleteUploadsContents'; /* DELETES UPLOADING FILE IN UPLOADS FOLDER, NO THE FOLDER ITSELF NOR THE PREVIOUS FILES */
+
 export const router = Router();
 
 //  Model
@@ -35,79 +34,44 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// ADD a new and send an email
-router.post(
-  "/",
-  upload.single("CV"),
-  validations,
-  async (req: Request, res: Response) => {
-    const validationErrors = validationResult(req);
-    const {
-      name,
-      email,
-      linkedin,
-      porfolio,
-      presentationLetter,
-      selectedButtons,
-    } = req.body;
+/* ADDS POSTULANTE AND SENDS EMAIL */
+router.post("/", upload.single("CV"), validations, async (req: Request, res: Response) => {
+  try {
+    const { name, email, linkedin, porfolio, presentationLetter, selectedButtons, } = req.body;
     let cv_file: string | undefined = req.file?.filename;
 
+    /* EXPRESS-VALIDATOR */
+    const validationErrors = validationResult(req);
     if (!validationErrors.isEmpty()) {
-      let dir = path.resolve(__dirname, "../../uploads");
-      if (existsSync(`${dir}/${cv_file}`)) unlinkSync(`${dir}/${cv_file}`);
+      deleteUploadsContents(req.file?.filename);
       return res.status(400).json(validationErrors.mapped());
     }
+    /*  */
 
-    const postulacione = new Postulantes({
-      name,
-      email,
-      linkedin,
-      porfolio,
-      presentationLetter,
-      cv_file,
-      listaSeccion: [selectedButtons],
+    /* MONGOOSE */
+    const postulacione = new Postulantes({ name, email, linkedin, porfolio, presentationLetter, cv_file, listaSeccion: [selectedButtons], });
+    const savePostulacione = await postulacione.save()
+    /*  */
+
+    /* NODEMAILER */
+    req.body = {
+      to: email,
+      subject: "Campamento Devocamp",
+      message: createEmail(name, req),
+    };
+
+    EmailController.send(req, res);
+    return res.status(201).json({
+      savePostulacione,
+      status: "Ok",
+      result: "Usuario creado y email enviado con éxito",
     });
+    /*  */
 
-    try {
-      const savePostulacione = await postulacione.save();
-      res.status(201).json(savePostulacione);
-    } catch (error) {
-      res.status(500).json(error);
-      return;
-    }
-
-    await postulacione
-      .save()
-      .then(() => {
-        const email = EmailController;
-        const emailRequest = req;
-
-        emailRequest.body = {
-          to: req.body.email,
-          subject: "Campamento Devocamp",
-          message: createEmailApplicants(req.body.name),
-        };
-
-        email.send(emailRequest, res);
-        return res.status(201).json({
-          status: "Ok",
-          result: "Usuario creado y email enviado con éxito",
-        });
-      })
-      .catch((error) => {
-        res.status(500).json({
-          error,
-        });
-      });
-
-    /*  return res.status(201).json({
-          status: "Ok",
-          result: "Usuario creado y email enviado con éxito",
-        }); */
-
-    return false;
+  } catch (error) {
+    return res.status(500).json(error);
   }
-);
+});
 
 // UPDATE a new
 router.put("/:id", async (req, res) => {
