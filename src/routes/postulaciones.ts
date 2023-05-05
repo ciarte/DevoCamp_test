@@ -35,7 +35,7 @@ router.get("/:id", async (req, res) => {
 });
 
 /* ADDS POSTULANTE AND SENDS EMAIL */
-router.post("/", upload.single("CV"), validations, async (req: Request, res: Response) => {
+router.post("/", upload.single("cv_file"), validations, async (req: Request, res: Response) => {
   try {
     const { name, email, linkedin, porfolio, presentationLetter, selectedButtons, } = req.body;
     let cv_file: string | undefined = req.file?.filename;
