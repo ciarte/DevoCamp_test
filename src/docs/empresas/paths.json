@@ -1,0 +1,104 @@
+{
+    "/empresas/": {
+        "post": {
+            "summary": "Send a new application for a company",
+            "tags": [
+                "Empresas"
+            ],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "multipart/form-data": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Empresa"
+                        },
+                        "required": [
+                            "archivoAdjunto",
+                            "interes",
+                            "nombre",
+                            "correo",
+                            "tel",
+                            "presentacion"
+                        ]
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "The created empresa object and a success message",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "savedEmpresa": {
+                                        "type": "object"
+                                    },
+                                    "message": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "result": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Invalid request data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "errors": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "location": {
+                                                    "type": "string"
+                                                },
+                                                "param": {
+                                                    "type": "string"
+                                                },
+                                                "value": {
+                                                    "type": "string"
+                                                },
+                                                "msg": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "500": {
+                    "description": "Server error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "error": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "consumes": [
+                "multipart/form-data"
+            ]
+        }
+    }
+}
