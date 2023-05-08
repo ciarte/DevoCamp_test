@@ -13,6 +13,8 @@ export const router = Router();
 const Postulaciones = Postulantes;
 
 // GET all
+ 
+ 
 router.get("/", async (_req, res) => {
   try {
     const postulacione = await Postulaciones.find();
@@ -35,6 +37,29 @@ router.get("/:id", async (req, res) => {
 });
 
 /* ADDS POSTULANTE AND SENDS EMAIL */
+/**
+ * Post track
+ * @openapi
+ * /postulante:
+ *    post:
+ *      tags:
+ *        - postulantes
+ *      summary: "Listar postulantes"
+ *      description: Este endpoint es para listar los postulantes totales 
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: "#/components/schemas/postulaciones"
+ *      responses:
+ *        '200':
+ *          description: Retorna el objeto insertado en la coleccion.
+ *        '422':
+ *          description: Error de validacion.
+ *      security:
+ *       - ffofofof: []
+ */
+
 router.post("/", upload.single("CV"), validations, async (req: Request, res: Response) => {
   try {
     const { name, email, linkedin, porfolio, presentationLetter, selectedButtons, } = req.body;

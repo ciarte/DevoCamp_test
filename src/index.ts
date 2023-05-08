@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import router from "./routes";
-
+import swaggerUi from "swagger-ui-express";
+import swaggerSetup from "./docs/swagger";
 //import { Postulantes } from "./models/Postulantes";
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/", router);
+app.use("/documentation",swaggerUi.serve, swaggerUi.setup(swaggerSetup))
 
 
 
