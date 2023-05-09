@@ -1,9 +1,9 @@
 {
-    "/empresas/": {
+    "/companies/": {
         "post": {
             "summary": "Send a new application for a company",
             "tags": [
-                "Empresas"
+                "Company"
             ],
             "requestBody": {
                 "required": true,
@@ -13,19 +13,19 @@
                             "$ref": "#/components/schemas/Empresa"
                         },
                         "required": [
-                            "archivoAdjunto",
-                            "interes",
-                            "nombre",
-                            "correo",
-                            "tel",
-                            "presentacion"
+                            "interest",
+                            "name",
+                            "email",
+                            "phone",
+                            "presentation",
+                            "attachedFile"
                         ]
                     }
                 }
             },
             "responses": {
                 "201": {
-                    "description": "The created empresa object and a success message",
+                    "description": "Creation of company",
                     "content": {
                         "application/json": {
                             "schema": {

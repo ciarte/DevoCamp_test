@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { router as routerPostulaciones } from "./postulaciones";
-import { router as routerEmpresas } from "./empresas";
+import { router as routerPostulaciones } from "./applicant";
+import { router as routerEmpresas } from "./company";
 
 const router = Router();
 
-router.use("/postulaciones", routerPostulaciones);
-router.use("/empresas",routerEmpresas);
+router.use("/applicants", routerPostulaciones);
+router.use("/companies",routerEmpresas);
 export default router;

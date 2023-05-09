@@ -4,19 +4,16 @@ import { validationResult } from "express-validator";
 import upload from "../middlewares/form.file.upload";
 import EmailController from "../utils/Email";
 import createEmail from "../utils/conts";
-import { Postulantes } from "../models/Postulantes";
+import { Applicant } from "../models/Applicant";
 import deleteUploadsContents from '../utils/deleteUploadsContents'; /* DELETES UPLOADING FILE IN UPLOADS FOLDER, NO THE FOLDER ITSELF NOR THE PREVIOUS FILES */
 
 export const router = Router();
 
-//  Model
-const Postulaciones = Postulantes;
-
 // GET all
 router.get("/", async (_req, res) => {
   try {
-    const postulacione = await Postulaciones.find();
-    res.json(postulacione);
+    const applicant = await Applicant.find();
+    res.json(applicant);
   } catch (error) {
     res.status(500).json(error);
     return;
@@ -26,8 +23,8 @@ router.get("/", async (_req, res) => {
 // GET all
 router.get("/:id", async (req, res) => {
   try {
-    const postulacione = await Postulaciones.findById(req.params.id);
-    res.json(postulacione);
+    const applicant = await Applicant.findById(req.params.id);
+    res.json(applicant);
   } catch (error) {
     res.status(500).json(error);
     return;
@@ -46,12 +43,10 @@ router.post("/", upload.single("cv_file"), validations, async (req: Request, res
       deleteUploadsContents(req.file?.filename);
       return res.status(400).json(validationErrors.mapped());
     }
-    /*  */
 
     /* MONGOOSE */
-    const postulacione = new Postulantes({ name, email, linkedin, porfolio, presentationLetter, cv_file, listaSeccion: [selectedButtons], });
-    const savePostulacione = await postulacione.save()
-    /*  */
+    const application = new Applicant({ name, email, linkedin, porfolio, presentationLetter, cv_file, listaSeccion: [selectedButtons], });
+    const saveApplication = await application.save()
 
     /* NODEMAILER */
     req.body = {
@@ -62,11 +57,10 @@ router.post("/", upload.single("cv_file"), validations, async (req: Request, res
 
     EmailController.send(req, res);
     return res.status(201).json({
-      savePostulacione,
+      saveApplication,
       status: "Ok",
       result: "Usuario creado y email enviado con éxito",
     });
-    /*  */
 
   } catch (error) {
     return res.status(500).json(error);
@@ -78,7 +72,7 @@ router.put("/:id", async (req, res) => {
   try {
     const { name, email, linkedin, porfolio, presentationLetter, CV } =
       req.body;
-    const newPostulaciones = {
+    const newApplicant = {
       name,
       email,
       linkedin,
@@ -86,8 +80,8 @@ router.put("/:id", async (req, res) => {
       presentationLetter,
       CV,
     };
-    await Postulaciones.findByIdAndUpdate(req.params.id, newPostulaciones);
-    res.json({ status: "Postulaciones Updated" });
+    await Applicant.findByIdAndUpdate(req.params.id, newApplicant);
+    res.json({ status: "Postulación actualizada" });
   } catch (error) {
     res.status(500).json(error);
     return;
@@ -96,8 +90,8 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    await Postulaciones.findByIdAndRemove(req.params.id);
-    res.json({ status: "Postulaciones Deleted" });
+    await Applicant.findByIdAndRemove(req.params.id);
+    res.json({ status: "Postulación eliminada" });
   } catch (error) {
     res.status(500).json(error);
     return;
