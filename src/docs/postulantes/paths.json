@@ -1,0 +1,92 @@
+{
+    "/postulaciones/": {
+        "get": {
+            "summary": "Description...",
+            "tags": [
+                "Postulaciones"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de la postulacion",
+                    "required": false,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            ],
+            "responses": {
+                "200": { 
+                    "description": "OK"
+                },
+                "500": {
+                    "description": "Error"
+                }
+            }
+        },
+        "post": {
+            "summary": "Description...",
+            "tags": [
+                "Postulaciones"
+            ],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "multipart/form-data": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Postulantes"
+                        }
+                    }
+                }
+            }
+        },
+        "put": {
+            "summary": "Description...",
+            "tags": [
+                "Postulaciones"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de la postulacion",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            ],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "multipart/form-data": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Postulantes"
+                        }
+                    }
+                }
+            }
+        },
+        "delete": {
+            "summary": "Description...",
+            "tags": [
+                "Postulaciones"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de la postulacion",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            ]
+        }
+    }
+}
