@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import Email from '../models/Email';
 import config from '../config/email';
-const nodemailer = require("nodemailer");
+import nodemailer from 'nodemailer';
 
 class EmailController {
-    async send(req: Request, res: Response) {
+    async send(req: Request, _res: Response) {
         const { to, subject, message } = req.body;
         const email = new Email({ to, subject, message });
         await email.save();
@@ -27,7 +27,7 @@ class EmailController {
         };
 
         transporter.sendMail(mailOptions, () => {
-            res.status(200).json({ status: 'success', message: 'E-mail send' });
+            /*  res.status(200).json({ status: 'success', message: 'E-mail send' }); */
         });
     }
 }

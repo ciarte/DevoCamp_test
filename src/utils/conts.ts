@@ -1,4 +1,4 @@
-function createEmailApplicants(name: string) {
+/* function createEmailApplicants(name: string) {
     return `Estimado ${name},
 
 Nos complace informarle que su inscripción al campamento de programación ha sido confirmada. ¡Gracias por unirse a nosotros en esta aventura de aprendizaje!
@@ -14,4 +14,14 @@ Devocamp`
 
 }
 
-export default createEmailApplicants;
+export default createEmailApplicants; */
+
+import { Request } from 'express';
+
+export default function createEmail(name: string, req: Request) {
+    const endpoint = req.originalUrl;
+    if (endpoint === '/postulaciones') return `Estimado ${name}, Mensaje para la ruta 1`;
+    else if (endpoint === '/empresas/') return `Estimado ${name}, Mensaje para la ruta 2`;
+    else throw new Error(`Endpoint '${endpoint}' no es válido`);
+};
+
