@@ -1,23 +1,23 @@
 {
-    "Empresa": {
+    "Company": {
         "type": "object",
         "properties": {
-            "interes": {
+            "interest": {
                 "type": "string"
             },
-            "nombre": {
+            "name": {
                 "type": "string"
             },
-            "correo": {
+            "email": {
                 "type": "string"
             },
-            "tel": {
+            "phone": {
                 "type": "string"
             },
-            "presentacion": {
+            "presentation": {
                 "type": "string"
             },
-            "archivoAdjunto": {
+            "attachedFile": {
                 "type": "string",
                 "format": "binary"
             }

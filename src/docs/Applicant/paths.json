@@ -1,9 +1,9 @@
 {
-    "/postulaciones/": {
+    "/applicants/": {
         "get": {
             "summary": "Description...",
             "tags": [
-                "Postulaciones"
+                "Applicant"
             ],
             "parameters": [
                 {
@@ -29,14 +29,14 @@
         "post": {
             "summary": "Description...",
             "tags": [
-                "Postulaciones"
+                "Applicant"
             ],
             "requestBody": {
                 "required": true,
                 "content": {
                     "multipart/form-data": {
                         "schema": {
-                            "$ref": "#/components/schemas/Postulantes"
+                            "$ref": "#/components/schemas/Applicant"
                         }
                     }
                 }
@@ -45,7 +45,7 @@
         "put": {
             "summary": "Description...",
             "tags": [
-                "Postulaciones"
+                "Applicant"
             ],
             "parameters": [
                 {
@@ -64,7 +64,7 @@
                 "content": {
                     "multipart/form-data": {
                         "schema": {
-                            "$ref": "#/components/schemas/Postulantes"
+                            "$ref": "#/components/schemas/Applicant"
                         }
                     }
                 }
@@ -73,7 +73,7 @@
         "delete": {
             "summary": "Description...",
             "tags": [
-                "Postulaciones"
+                "Applicant"
             ],
             "parameters": [
                 {

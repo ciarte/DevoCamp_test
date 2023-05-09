@@ -1,6 +1,6 @@
 import path from "path";
 import { ValidationChain, body } from "express-validator";
-import { Postulantes } from "../models/Postulantes";
+import { Applicant } from "../models/Applicant";
 
 let extAllow: string[] = [".jpg", ".png", ".pdf", ".jpeg"];
 let maxSize: number = 500000;
@@ -25,7 +25,7 @@ export const validations: ValidationChain[] = [
     .withMessage("Formato de email inválido")
     .trim()
     .custom(async (email: string) => {
-      let emailFound = await Postulantes.findOne({ email });
+      let emailFound = await Applicant.findOne({ email });
       if (emailFound)
         throw new Error(
           "El email que intentas utilizar ya se encuentra registrado en nuestra Base de Datos"

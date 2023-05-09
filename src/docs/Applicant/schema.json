@@ -1,5 +1,5 @@
 {
-    "Postulantes": {
+    "Applicant": {
         "type": "object",
         "properties": {
             "name": {
@@ -20,7 +20,7 @@
             "cv_file": {
                 "type": "string"
             },
-            "listaSeccion": {
+            "listSection": {
                 "type": "array",
                 "items": {
                     "type": "object",
