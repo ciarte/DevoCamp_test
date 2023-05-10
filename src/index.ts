@@ -2,8 +2,7 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import router from "./routes";
-import swaggerUi from "swagger-ui-express";
-import swaggerSetup from "./docs/swagger";import swaggerUI from "swagger-ui-express";
+import swaggerUI from "swagger-ui-express";
 import objConfigSwagger from './docs/index';
 
 const app = express();
