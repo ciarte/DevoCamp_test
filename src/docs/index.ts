@@ -1,27 +1,33 @@
 import docsSwagger from "./docs.json";
 
-import pathsEmpresas from "./empresas/paths.json";
-import pathsPostulantes from "./postulantes/paths.json";
+import pathsCompanies from "./Company/paths.json";
+import pathsApplicates from "./Applicant/paths.json";
 
-import schemaEmpresas from "./empresas/schema.json";
-import schemaPostulantes from "./postulantes/schema.json";
+import schemaCompany from "./Company/schema.json";
+import schemaApplicant from "./Applicant/schema.json";
 
 const objConfigSwagger = {
-    ...docsSwagger,
-    "paths": {
-        ...pathsEmpresas,
-        ...pathsPostulantes
+  ...docsSwagger,
+  paths: {
+    ...pathsCompanies,
+    ...pathsApplicates,
+  },
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: "http",
+        scheme: "bearer",
+      },
     },
-    "components": {
-        "schemas": {
-            ...schemaEmpresas,
-            ...schemaPostulantes
-        }
-        // "parameters": {}    Create a file for the parameters. "parameters.json" 
-        // "paths": {}         Create a file for the paths. "paths.json"
-        // "responses": {}     Create a file for the responsers. "responses.json"
-        // "headers": {}       Create a file for the headers. "headers.json"
-    }
-}
+    schemas: {
+      ...schemaCompany,
+      ...schemaApplicant,
+    },
+    // "parameters": {}    Create a file for the parameters. "parameters.json"
+    // "paths": {}         Create a file for the paths. "paths.json"
+    // "responses": {}     Create a file for the responsers. "responses.json"
+    // "headers": {}       Create a file for the headers. "headers.json"
+  },
+};
 
 export default objConfigSwagger;

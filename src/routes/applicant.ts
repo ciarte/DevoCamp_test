@@ -10,6 +10,8 @@ import deleteUploadsContents from '../utils/deleteUploadsContents'; /* DELETES U
 export const router = Router();
 
 // GET all
+ 
+ 
 router.get("/", async (_req, res) => {
   try {
     const applicant = await Applicant.find();

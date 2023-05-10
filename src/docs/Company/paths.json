@@ -10,7 +10,7 @@
                 "content": {
                     "multipart/form-data": {
                         "schema": {
-                            "$ref": "#/components/schemas/Empresa"
+                            "$ref": "#/components/schemas/Company"
                         },
                         "required": [
                             "interest",
