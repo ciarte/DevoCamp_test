@@ -1,50 +1,49 @@
 import { model, Schema } from "mongoose";
 
-const EmpresaSchema = new Schema({
+const CompanySchema = new Schema({
 
-    interes: {
+    interest: {
         type: String,
         required: true,
     },
 
-    nombre: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 100
-    },
-
-    correo: {
+    name: {
         type: String,
         required: true,
         trim: true,
         maxlength: 100
     },
 
-    tel: {
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 100
+    },
+
+    phone: {
         type: String,
         required: true,
         trim: true,
         maxLength: 100
     },
 
-    presentacion: {
+    presentation: {
         type: String,
         required: true,
         maxlength: 255
     },
 
-    archivoAdjunto: {
+    attachedFile: {
         type: String,
         trim: true,
     }
-
 }, {
     versionKey: false,
     timestamps: true,
-    collection: 'Empresas',
+    collection: 'Company',
     minimize: true,
     strict: true
 });
 
-export const Empresas = model('Empresas', EmpresaSchema);
+export const Company = model('Company', CompanySchema);

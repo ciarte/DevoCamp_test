@@ -1,0 +1,92 @@
+{
+    "/applicants/": {
+        "get": {
+            "summary": "Description...",
+            "tags": [
+                "Applicant"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de la postulacion",
+                    "required": false,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            ],
+            "responses": {
+                "200": { 
+                    "description": "OK"
+                },
+                "500": {
+                    "description": "Error"
+                }
+            }
+        },
+        "post": {
+            "summary": "Description...",
+            "tags": [
+                "Applicant"
+            ],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "multipart/form-data": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Applicant"
+                        }
+                    }
+                }
+            }
+        },
+        "put": {
+            "summary": "Description...",
+            "tags": [
+                "Applicant"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de la postulacion",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            ],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "multipart/form-data": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Applicant"
+                        }
+                    }
+                }
+            }
+        },
+        "delete": {
+            "summary": "Description...",
+            "tags": [
+                "Applicant"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de la postulacion",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            ]
+        }
+    }
+}

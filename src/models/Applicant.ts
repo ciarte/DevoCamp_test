@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 
-const PostulanteSchema = new Schema(
+const ApplicantSchema = new Schema(
   {
     name: {
       type: String,
@@ -40,7 +40,7 @@ const PostulanteSchema = new Schema(
       trim: true,
       maxlength: 100,
     },
-    listaSeccion: {
+    listSection: {
       type: [String],
       default: [],
       trim: true,
@@ -50,10 +50,10 @@ const PostulanteSchema = new Schema(
   {
     versionKey: false,
     timestamps: true,
-    collection: "Postulantes",
+    collection: "Applicant",
     minimize: true,
     strict: true,
   }
 );
 
-export const Postulantes = model("Postulantes", PostulanteSchema);
+export const Applicant = model("Applicant", ApplicantSchema);
