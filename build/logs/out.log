@@ -1,16 +1,8 @@
-2023-05-30 20:12:43: Server running on http://localhost:3000
-2023-05-30 20:12:44: Server running on http://localhost:3000
-2023-05-30 20:12:45: Server running on http://localhost:3000
-2023-05-30 20:12:45: DB connected
-2023-05-30 20:12:46: DB connected
-2023-05-30 20:12:46: Server running on http://localhost:3000
-2023-05-30 20:12:47: DB connected
-2023-05-30 20:12:48: DB connected
-2023-05-30 20:13:24: Server running on http://localhost:3000
-2023-05-30 20:13:25: Server running on http://localhost:3000
-2023-05-30 20:13:26: Server running on http://localhost:3000
-2023-05-30 20:13:26: DB connected
-2023-05-30 20:13:26: Server running on http://localhost:3000
-2023-05-30 20:13:27: DB connected
-2023-05-30 20:13:28: DB connected
-2023-05-30 20:13:28: DB connected
+2023-05-30 20:35:38: Error en servidor Error: bind EADDRINUSE null:3000
+2023-05-30 20:35:39: Error en servidor Error: bind EADDRINUSE null:3000
+2023-05-30 20:35:40: DB connected
+2023-05-30 20:35:40: Error en servidor Error: bind EADDRINUSE null:3000
+2023-05-30 20:35:41: Error en servidor Error: bind EADDRINUSE null:3000
+2023-05-30 20:35:41: DB connected
+2023-05-30 20:35:42: DB connected
+2023-05-30 20:35:43: DB connected
