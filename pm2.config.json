@@ -9,7 +9,8 @@
       "log_date_format": "YYYY-MM-DD HH:mm:ss",
       "error_file": "build/logs/error.log",
       "out_file": "build/logs/out.log",
-      "merge_logs": true
+      "merge_logs": true,
+      "log_type": "json"
     }
   ]
 }

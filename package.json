@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start --name DevocampPrueba build/server.js",
+    "start": "pm2-runtime start pm2.config.json --only restserver",
     "dev": "ts-node-dev src/server.ts",
-    "tsc": "tsc",
     "build:prod": "rimraf ./build && tsc",
-    "start:prod": "npm run build:prod && node build/server.js",
+    "start:prod": "npm run build:prod && npm run start",
+    "tsc": "tsc",
     "test": "jest --verbose --detectOpenHandles --silent",
     "test:coverage": "jest --verbose --detectOpenHandles --coverage --coverageReporters=html"
   },
