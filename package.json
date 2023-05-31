@@ -7,7 +7,7 @@
     "start": "pm2-runtime start pm2.config.json --only restserver",
     "dev": "ts-node-dev src/server.ts",
     "build:prod": "rimraf ./build && tsc",
-    "start:prod": "npm run build:prod && npm run start",
+    "start:prod": "npm run build:prod",
     "tsc": "tsc",
     "test": "jest --verbose --detectOpenHandles --silent",
     "test:coverage": "jest --verbose --detectOpenHandles --coverage --coverageReporters=html"
