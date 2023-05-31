@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": " node build/server.js && pm2 start --name admin build/server.js",
+    "start": "pm2-runtime start --name admin pm2.config.json",
     "dev": "ts-node-dev src/server.ts",
     "tsc": "tsc",
     "build:prod": "rimraf ./build && tsc",

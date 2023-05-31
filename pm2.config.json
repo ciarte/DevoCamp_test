@@ -10,7 +10,9 @@
       "error_file": "build/logs/error.log",
       "out_file": "build/logs/out.log",
       "merge_logs": true,
-      "log_type": "json"
+      "ignore_watch": [
+        "node_modules"
+      ]
     }
   ]
 }

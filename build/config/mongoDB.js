@@ -15,10 +15,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.mongoConnect = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 require("dotenv/config");
+// export const mongoConnect = async () => {
+//   const DB_URI_LOCAL = <string>process.env.DB_URI_LOCAL;
+//   try {
+//     await mongoose.connect(DB_URI_LOCAL);
+//     console.log("DB connected");
+//   } catch (error) {
+//     console.error("Failed to connect to MongoDB\n", error);
+//   }
+// };
 const mongoConnect = () => __awaiter(void 0, void 0, void 0, function* () {
-    const DB_URI_LOCAL = process.env.DB_URI_LOCAL;
+    const DB_URI_CLOUD = process.env.DB_URI_CLOUD;
     try {
-        yield mongoose_1.default.connect(DB_URI_LOCAL);
+        yield mongoose_1.default.connect(DB_URI_CLOUD);
         console.log("DB connected");
     }
     catch (error) {
@@ -26,12 +35,3 @@ const mongoConnect = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.mongoConnect = mongoConnect;
-// export const mongoConnect = async () => {
-//   const DB_URI_CLOUD = <string>process.env.DB_URI_CLOUD;
-//   try {
-//     await mongoose.connect(DB_URI_CLOUD);
-//     console.log("DB connected");
-//   } catch (error) {
-//     console.error("Failed to connect to MongoDB\n", error);
-//   }
-// };
