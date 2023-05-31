@@ -1,0 +1,26 @@
+{
+    "Company": {
+        "type": "object",
+        "properties": {
+            "interest": {
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+            "email": {
+                "type": "string"
+            },
+            "phone": {
+                "type": "string"
+            },
+            "presentation": {
+                "type": "string"
+            },
+            "attachedFile": {
+                "type": "string",
+                "format": "binary"
+            }
+        }
+    }
+}
